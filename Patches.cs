@@ -71,9 +71,9 @@ namespace MunitionMarkers
                     __result = true;
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Plugin.Log?.LogError(e);
+                Plugin.Log?.LogError("[MunitionMarkers] IsVisible postfix: " + ex);
             }
         }
     }
@@ -96,9 +96,9 @@ namespace MunitionMarkers
                     __result = MunitionRules.SymbolFor(__instance.BaseObject._type);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Plugin.Log?.LogError(e);
+                Plugin.Log?.LogError("[MunitionMarkers] GetMapType postfix: " + ex);
             }
         }
     }

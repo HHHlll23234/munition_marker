@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>MunitionMarkers</AssemblyName>
+    <RootNamespace>MunitionMarkers</RootNamespace>
+    <Version>1.0.0</Version>
+    <Nullable>disable</Nullable>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+
+    <!--
+      Sea Power install directory is resolved in this order:
+        1. msbuild property:   dotnet build -p:SeaPowerDir="C:\...\Sea Power"
+        2. environment var:    SEAPOWER_DIR
+        3. Directory.Build.props next to this file (gitignored)
+        4. auto-detection of common Steam library locations below
+    -->
+    <SeaPowerDir Condition="'$(SeaPowerDir)' == ''">$(SEAPOWER_DIR)</SeaPowerDir>
+    <AnchorChainDir Condition="'$(AnchorChainDir)' == ''">$(ANCHORCHAIN_DIR)</AnchorChainDir>
+
+    <SeaPowerDir Condition="'$(SeaPowerDir)' == '' and Exists('C:\Program Files (x86)\Steam\steamapps\common\Sea Power')">C:\Program Files (x86)\Steam\steamapps\common\Sea Power</SeaPowerDir>
+    <SeaPowerDir Condition="'$(SeaPowerDir)' == '' and Exists('C:\SteamLibrary\steamapps\common\Sea Power')">C:\SteamLibrary\steamapps\common\Sea Power</SeaPowerDir>
+    <SeaPowerDir Condition="'$(SeaPowerDir)' == '' and Exists('D:\SteamLibrary\steamapps\common\Sea Power')">D:\SteamLibrary\steamapps\common\Sea Power</SeaPowerDir>
+    <SeaPowerDir Condition="'$(SeaPowerDir)' == '' and Exists('E:\SteamLibrary\steamapps\common\Sea Power')">E:\SteamLibrary\steamapps\common\Sea Power</SeaPowerDir>
+    <SeaPowerDir Condition="'$(SeaPowerDir)' == '' and Exists('F:\SteamLibrary\steamapps\common\Sea Power')">F:\SteamLibrary\steamapps\common\Sea Power</SeaPowerDir>
+    <SeaPowerDir Condition="'$(SeaPowerDir)' == '' and Exists('G:\SteamLibrary\steamapps\common\Sea Power')">G:\SteamLibrary\steamapps\common\Sea Power</SeaPowerDir>
+
+    <!-- Anchor Chain (workshop item 3380210757) defaults to the same Steam library as the game. -->
+    <AnchorChainDir Condition="'$(AnchorChainDir)' == '' and '$(SeaPowerDir)' != ''">$([System.String]::Copy('$(SeaPowerDir)').Replace('\steamapps\common\Sea Power', '\steamapps\workshop\content\1286220\3380210757'))</AnchorChainDir>
+  </PropertyGroup>
+
+  <Target Name="ValidateGamePaths" BeforeTargets="ResolveAssemblyReferences">
+    <Error Condition="!Exists('$(SeaPowerDir)\Sea Power_Data\Managed\Seapower-Scripts.dll')"
+           Text="Sea Power install directory not found. Fix with one of: 1) dotnet build -p:SeaPowerDir=&quot;C:\path\to\Sea Power&quot; 2) set environment variable SEAPOWER_DIR 3) create Directory.Build.props containing &lt;Project&gt;&lt;PropertyGroup&gt;&lt;SeaPowerDir&gt;C:\path\to\Sea Power&lt;/SeaPowerDir&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;" />
+    <Error Condition="!Exists('$(AnchorChainDir)\AnchorChain.dll')"
+           Text="AnchorChain.dll not found. Fix with one of: -p:AnchorChainDir=&quot;...\steamapps\workshop\content\1286220\3380210757&quot;, ANCHORCHAIN_DIR, or Directory.Build.props." />
+  </Target>
+
+  <ItemGroup>
+    <Reference Include="AnchorChain">
+      <HintPath>$(AnchorChainDir)\AnchorChain.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>$(SeaPowerDir)\BepInEx\core\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(SeaPowerDir)\BepInEx\core\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Seapower-Scripts">
+      <HintPath>$(SeaPowerDir)\Sea Power_Data\Managed\Seapower-Scripts.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(SeaPowerDir)\Sea Power_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

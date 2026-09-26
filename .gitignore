@@ -1,7 +1,24 @@
 # Build output
 bin/
 obj/
-*.user
+dist/
 
-# Local deploy artifacts
-deploy/
+# IDE / OS noise
+.vs/
+.vscode/
+*.user
+*.suo
+Thumbs.db
+Desktop.ini
+
+# NuGet / local caches
+packages/
+*.nupkg
+
+# Local build configuration (per-machine game paths)
+Directory.Build.props
+local.props
+
+# Logs
+*.log
+LogOutput.log
