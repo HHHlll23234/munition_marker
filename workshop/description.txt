@@ -16,6 +16,8 @@ Per-category toggles and friend-only / both-sides filtering are available in [b]
 
 [b]Requirement:[/b] Anchor Chain (community chainloader) — subscribe to it first, then drop this mod's folder into [b]Sea Power_Data\StreamingAssets[/b] or enable it in the in-game Mods menu.
 
+[b]Note:[/b] like all AnchorChain code mods, this plugin loads regardless of the in-game Mods menu toggle. To disable it, unsubscribe (or remove the mod folder).
+
 Source code (MIT): https://github.com/HHHlll23234/munition_marker
 
 ────────────────────
@@ -35,5 +37,7 @@ Source code (MIT): https://github.com/HHHlll23234/munition_marker
 首次运行后可在 [b]BepInEx\config\MunitionMarkers.cfg[/b] 中分类开关，并选择仅显示己方或双方弹药。
 
 [b]前置依赖：[/b]Anchor Chain（社区链式加载器）——先订阅它，再将本模组放入 [b]Sea Power_Data\StreamingAssets[/b] 或在游戏内 Mods 菜单启用。
+
+[b]注意：[/b]与所有 AnchorChain 代码型模组一样，本插件不受游戏内 Mods 菜单开关控制。如需停用，请取消订阅（或移除本模组文件夹）。
 
 源代码（MIT）：https://github.com/HHHlll23234/munition_marker
