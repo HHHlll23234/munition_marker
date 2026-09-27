@@ -1,0 +1,39 @@
+[h1]Munition Markers / 弹药标记[/h1]
+
+[b]English[/b]
+
+Reveals munitions that Sea Power normally hides from the tactical map, plotting them as ordinary contacts:
+
+[list]
+[*] Unguided bombs (shown with the missile symbol)
+[*] Unguided aerial rockets (missile symbol)
+[*] RBU anti-submarine rocket salvos (torpedo symbol)
+[/list]
+
+Missiles, torpedoes and guided bombs are already plotted by the base game and are left untouched. Shell / CIWS tracers are not covered (they live outside the plotting table).
+
+Per-category toggles and friend-only / both-sides filtering are available in [b]BepInEx\config\MunitionMarkers.cfg[/b] after the first launch.
+
+[b]Requirement:[/b] Anchor Chain (community chainloader) — subscribe to it first, then drop this mod's folder into [b]Sea Power_Data\StreamingAssets[/b] or enable it in the in-game Mods menu.
+
+Source code (MIT): https://github.com/HHHlll23234/munition_marker
+
+────────────────────
+
+[b]中文[/b]
+
+把原版战术地图上被刻意隐藏的弹药当作普通接触标绘出来：
+
+[list]
+[*] 非制导炸弹（复用导弹图标）
+[*] 无制导航空火箭弹（复用导弹图标）
+[*] RBU 反潜火箭深弹（复用鱼雷图标）
+[/list]
+
+导弹、鱼雷、制导炸弹原版已显示，本插件不做改动；舰炮/CIWS 炮弹不在绘图桌数据内，本版不覆盖。
+
+首次运行后可在 [b]BepInEx\config\MunitionMarkers.cfg[/b] 中分类开关，并选择仅显示己方或双方弹药。
+
+[b]前置依赖：[/b]Anchor Chain（社区链式加载器）——先订阅它，再将本模组放入 [b]Sea Power_Data\StreamingAssets[/b] 或在游戏内 Mods 菜单启用。
+
+源代码（MIT）：https://github.com/HHHlll23234/munition_marker

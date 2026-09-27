@@ -51,6 +51,15 @@ dotnet build -c Release -p:SeaPowerDir="F:\SteamLibrary\steamapps\common\Sea Pow
 
 AnchorChain 会扫描 `StreamingAssets` 下所有子目录里的 DLL，放进去即可。
 
+`dist\` 的输出即创意工坊标准形态（与 AnchorChain / AutomaticSAR 等已上架模组同构）：
+
+```
+dist/
+├── MunitionMarkers.dll   # 插件本体
+├── _info.ini             # 名称/描述/兼容版本（Language_en + Language_cn）
+└── preview.png           # 工坊预览图（512x512）
+```
+
 ## 5. 配置
 
 首次运行后生成：`BepInEx\config\MunitionMarkers.cfg`
@@ -62,7 +71,18 @@ AnchorChain 会扫描 `StreamingAssets` 下所有子目录里的 DLL，放进去
 | `Markers.ShowRbu` | true | 显示反潜火箭深弹 |
 | `Markers.ShowBothSides` | true | true=双方；false=仅己方 |
 
-## 6. 验证
+## 6. 创意工坊发布（备查）
+
+当前版本已整理为可上架形态，尚未上架。将来发布时：
+
+1. `.\build.ps1` 生成 `dist\`（即工坊物品内容）。
+2. 用游戏内 Mods 菜单的上传功能（或 Steamworks 工具）上传 `dist\` 内容；
+   物品标题/各语言描述直接取自 `_info.ini`，商店页文案见 `workshop\description.txt`（BBCode），
+   预览图用 `workshop\preview.png`。
+3. 工坊物品获得 ID 后，玩家订阅的内容会落到
+   `steamapps\workshop\content\1286220\<id>\`，与本仓库 `dist\` 结构一致。
+
+## 7. 验证
 
 启动游戏后看 `BepInEx\LogOutput.log`，应出现：
 

@@ -23,8 +23,9 @@ if ($LASTEXITCODE -ne 0) {
 New-Item -ItemType Directory -Force -Path $dist | Out-Null
 Copy-Item -LiteralPath (Join-Path $root "bin\Release\MunitionMarkers.dll") -Destination $dist -Force
 Copy-Item -LiteralPath (Join-Path $root "_info.ini") -Destination $dist -Force
+Copy-Item -LiteralPath (Join-Path $root "workshop\preview.png") -Destination $dist -Force
 
-Write-Host "Built: $dist\MunitionMarkers.dll"
+Write-Host "Built: $dist\MunitionMarkers.dll (workshop-ready: dll + _info.ini + preview.png)"
 
 if ($Deploy) {
     if (-not $SeaPowerDir) {
@@ -34,5 +35,6 @@ if ($Deploy) {
     New-Item -ItemType Directory -Force -Path $modDir | Out-Null
     Copy-Item -LiteralPath (Join-Path $dist "MunitionMarkers.dll") -Destination $modDir -Force
     Copy-Item -LiteralPath (Join-Path $dist "_info.ini") -Destination $modDir -Force
+    Copy-Item -LiteralPath (Join-Path $dist "preview.png") -Destination $modDir -Force
     Write-Host "Deployed to: $modDir"
 }
