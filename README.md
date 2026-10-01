@@ -1,5 +1,7 @@
 # Munition Markers（弹药标记）
 
+![Munition Markers 预览](workshop/preview.png)
+
 Sea Power 0.8.x 的 BepInEx / AnchorChain 插件，版本 1.0.0。
 
 ## 1. 这个插件是做什么的
