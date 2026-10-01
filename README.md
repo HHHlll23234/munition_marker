@@ -43,7 +43,7 @@ XAML 里只有枚举中已存在的图标，所以复用现有图标；新增独
 dotnet build -c Release
 
 # 或指定游戏目录
-dotnet build -c Release -p:SeaPowerDir="F:\SteamLibrary\steamapps\common\Sea Power"
+dotnet build -c Release -p:SeaPowerDir="C:\path\to\Sea Power"
 
 # 构建并部署到游戏的 StreamingAssets
 .\build.ps1 -Deploy

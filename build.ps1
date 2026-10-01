@@ -29,7 +29,19 @@ Write-Host "Built: $dist\MunitionMarkers.dll (workshop-ready: dll + _info.ini + 
 
 if ($Deploy) {
     if (-not $SeaPowerDir) {
-        $SeaPowerDir = "F:\SteamLibrary\steamapps\common\Sea Power"
+        # Same auto-detection order as the .csproj: common Steam library locations.
+        foreach ($cand in @(
+            "C:\Program Files (x86)\Steam\steamapps\common\Sea Power",
+            "C:\SteamLibrary\steamapps\common\Sea Power",
+            "D:\SteamLibrary\steamapps\common\Sea Power",
+            "E:\SteamLibrary\steamapps\common\Sea Power",
+            "F:\SteamLibrary\steamapps\common\Sea Power",
+            "G:\SteamLibrary\steamapps\common\Sea Power")) {
+            if (Test-Path (Join-Path $cand "Sea Power_Data")) { $SeaPowerDir = $cand; break }
+        }
+    }
+    if (-not $SeaPowerDir) {
+        throw "Sea Power install directory not found. Re-run with -SeaPowerDir `"C:\path\to\Sea Power`"."
     }
     $modDir = Join-Path $SeaPowerDir "Sea Power_Data\StreamingAssets\MunitionMarkers"
     New-Item -ItemType Directory -Force -Path $modDir | Out-Null
